@@ -1,0 +1,52 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<script src="../../assets/js/notify.js"></script>
+
+{{!-- <script src="../assets/app2.js"></script> --}}
+
+<ul class="nav shadow-lg p-3 mb-5 bg-dark rounded">
+    <li class="nav-item">
+        <button class="nav-link btn btn-info" id="homeButton">Home</button>
+    </li>
+    {{!-- <li class="nav-item">
+        <button class="nav-link btn btn-info" id="viewRequests">View Requests</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link btn btn-info" id="viewDonations">View Donations</button>
+    </li> --}}
+    <li class="nav-item">
+        <button class="nav-link btn btn-info" id="viewCards">Your Cards</button>
+    </li>
+    <li class="nav-item">
+        <a href="/"><button class="nav-link btn btn-info" id="logout">Logout</button></a>
+    </li>
+</ul>
+
+<div class="alert alert-info" role="alert">
+    <h2>View all donations for your requests below!</h2>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {{#each donations}}
+        <div class="d-inline-flex flex-row p-3">
+            <div class="card" style="width: 18rem;">
+                {{!-- <img class="card-img-top" src="{{image}}" alt="Card image cap"> --}}
+                <div class="card-body">
+                    <h5 class="card-title">A user has offered to donate {{amount}} of the item you have requested.</h5>
+                    <button class="acceptDonation btn btn-info" data-requestorcardid="{{RequestorCardId}}"
+                        data-userid="{{UserId}}" data-amount="{{amount}}" data-value="true">Accept</button>
+                    <button class="denyDonation btn btn-danger" data-requestorcardid="{{RequestorCardId}}"
+                        data-userid="{{UserId}}" data-amount="{{amount}}" data-value="false">Deny</button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="col-md-2"></div>
+</div>

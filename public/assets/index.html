@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Donation Station
+    </title>
+    <script src="./js/app3.js"></script>
+</head>
+
+
+
+<body>
+    <div id="bigdiv">
+        <nav class="nav p-3 bg-dark rounded">
+            <a class="navbar-brand" href="https://salty-headland-10665.herokuapp.com/" target="_blank">
+                <div id="logo">
+                    <img src="./img/blkDsLogo.png" width="200" height="200" alt="">
+                </div>
+            </a>
+            <form class="form-inline mr-auto">
+            </form>
+            <div id="navbar">
+                <a data-toggle="modal" data-target="#loginModal" class="navbar-brand" href="#">
+                    LOGIN
+                </a>
+                <a data-toggle="modal" data-target="#signupModal" class="navbar-brand" href="#">
+                    SIGN UP
+                </a>
+            </div>
+        </nav>
+
+        <div id="littlediv">
+            <img src="./img/background.png" class="card-img" alt="...">
+            <!-- <div class="card-img-overlay">
+            </div> -->
+        </div>
+        <div id="loginModal" class="modal" tabindex="1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="text-center">
+                        <h5>Welcome to Donation Station</h5>
+                        <h7>Where giving and receiving is second nature.</h7>
+                    </div>
+                    <div class="modal-body">
+                        <input id="username" class="form-control form-control-lg" type="text"
+                            placeholder="Username"><br>
+                        <input id="signup" class="form-control form-control-lg" type="text" placeholder="Password"><br>
+                    </div>
+                    <div class="text-center">
+                        <button id="login" type="button" class="btn btn-danger btn-lg btn-block">Log in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="signupModal" class="modal" tabindex="1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="text-center">
+                        <h5>Welcome to Donation Station</h5>
+                        <h7>Where giving and receiving is second nature.</h7>
+                    </div>
+                    <div class="modal-body">
+                        <input id="email" class="form-control form-control-lg" type="text"
+                            placeholder="Email"><br>
+                        <input id="username" class="form-control form-control-lg" type="text"
+                            placeholder="Username"><br>
+                        <input id="password" class="form-control form-control-lg" type="text"
+                            placeholder="Password"><br>
+                    </div>
+                    <div class="text-center">
+                        <button id="signup" type="button" class="btn btn-danger btn-lg btn-block">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

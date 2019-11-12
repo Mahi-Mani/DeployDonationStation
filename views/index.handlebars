@@ -1,0 +1,333 @@
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+{{!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../../assets/js/notify.js"></script>
+{{!-- Requestor Card --}}
+
+<ul class="nav shadow-lg p-3 mb-5 bg-dark rounded">
+
+  <li class="nav-item">
+    <button class="nav-link btn btn-info" id="homeButton">Home</button>
+  </li>
+  {{!-- <li class="nav-item">
+        <button class="nav-link btn btn-info" id="viewRequests">View Requests</button>
+    </li> --}}
+  <li class="nav-item">
+    <button class="nav-link btn btn-info" id="viewNotifications">View Notifications</button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link btn btn-info" id="viewCards">Your Cards</button>
+  </li>
+  <li class="nav-item">
+    <a href="/"><button class="nav-link btn btn-info" id="logout">Logout</button></a>
+  </li>
+</ul>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {{#each priority}}
+    <div class="priority d-inline-flex flex-row p-3">
+
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{image}}" alt="Card image cap">
+        <div class="card-body">
+          <h3 class="text-danger">PRIORITY</h3>
+          <h5 class="card-title">{{category}}</h5>
+          <h5 class="card-title">{{item}} {{numberneeded}}</h5>
+          <p class="card-text">Location: {{location}}</p>
+          <a href="#" class="btn btn-primary donate" data-id="{{id}}" data-item="{{item}}"
+            data-useremail="{{useremail}}" data-toggle="modal" data-target="#donateModal">Make Donation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+<div class="col-md-2"></div>
+</div>
+
+<hr>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <a class="btn btn-primary btn-lg" data-toggle="collapse" href="#viewRequests" role="button" aria-expanded="false"
+      aria-controls="viewRequests">
+      View Requests
+    </a>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+{{!-- <div class="container"> --}}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {{#each requestorCards}}
+    <div class="d-inline-flex flex-row p-3">
+      <div class="card collapse" style="width: 18rem;" id="viewRequests">
+        <img class="card-img-top" src="{{image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{category}}</h5>
+          <h5 class="card-title">{{item}} {{numberneeded}}</h5>
+          <p class="card-text">Location: {{location}}</p>
+          <a href="#" class="btn btn-primary donate" data-id="{{id}}" data-item="{{item}}"
+            data-useremail="{{useremail}}" data-toggle="modal" data-target="#donateModal">Make Donation</a>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+<div class="col-md-2"></div>
+</div>
+{{!-- </div> --}}
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#makeRequestModal">Make a new
+      Request <i class="fas fa-plus-circle"></i></button>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+<div class="modal fade" id="makeRequestModal" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Make a New Request</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="category">Category</label>
+
+            <select id="requestorCardCategory">
+              <option value="none">--None--</option>
+              <option value="Food">Food</option>
+              <option value="Clothing">Clothing</option>
+              <option value="School Supplies">School Supplies</option>
+              <option value="Household Items">Household Items</option>
+              <option value="Cleaning Supplies">Cleaning Supplies</option>
+              <option value="Miscellaneous">Misc</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="item">Item</label>
+            <input type="item" class="form-control" id="requestorCardItem" aria-describedby="emailHelp"
+              placeholder="Item you wish to request" data-placement="right" title="Item is required">
+          </div>
+          <label for="noOfItemsNeeded">Number of Items Needed</label>
+          <input type="noOfItemsNeeded" class="form-control" id="requestorCardNumberNeeded" aria-describedby="emailHelp"
+            placeholder="Enter number of items you are requesting" data-placement="right"
+            title="#Needed is required! Should be a number">
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="location" class="form-control" id="requestorCardLocation" aria-describedby="emailHelp"
+              placeholder="Your location" data-placement="right" title="Location is required">
+          </div>
+          <div class="form-group">
+            <label for="location">Priority</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="requestorCardPriority" value="false">
+              <label class="form-check-label" for="inlineCheckbox1">No</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="requestorCardPriority" value="true">
+              <label class="form-check-label" for="inlineCheckbox2">Yes</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="text" class="form-control" id="requestorCardImage" aria-describedby="emailHelp"
+              placeholder="Optional image of items you wish to donate">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="addRequestorCard">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-close">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal fade" id="donateModal" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Offer Donation</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="donation">How much of this item are you able to donate?</label>
+            <input type="integer" class="form-control" id="offerDonationNumber" aria-describedby="emailHelp"
+              placeholder="#">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="offerDonation" data-dismiss="modal">Offer
+          Donation</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<br><br>
+{{!-- End Requestor card --}}
+
+
+
+{{!-- Donator card --}}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <a class="btn btn-primary btn-lg" data-toggle="collapse" href="#viewDonations" role="button" aria-expanded="false"
+      aria-controls="viewDonations">
+      View Donations
+    </a>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    {{#each result}}
+    <div class="d-inline-flex flex-row p-3">
+      <div class="card collapse" style="width: 18rem;" id="viewDonations">
+        <img class="card-img-top" src="{{image}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{category}}</h5>
+          <h5 class="card-title">{{item}} {{itemnumber}}</h5>
+          <p class="card-text">Location: {{location}}</p>
+          <p class="card-text">Available Until: {{enddate}}</p>
+          <button class="btn btn-success" id="requestDonation" data-id={{id}} data-item="{{item}}"
+            data-useremail="{{useremail}}">Request Donation</button>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+{{!-- Button to add a new card --}}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <button class="btn btn-info btn-lg" id="add-btn">MAKE A DONATION <i class="fas fa-plus-circle"></i></button>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+{{!-- Modal --}}
+
+<div class="modal" tabindex="-1" role="dialog" id="add-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Donation Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form -->
+        <form data-toggle="validator" role="form" id="myForm">
+          <div class="form-group">
+            <label for="sdate">Start Date</label>
+            <input type="sdate" class="form-control" id="input-sdate" aria-describedby="emailHelp"
+              placeholder="Enter start Date" name="sdate" data-placement="right"
+              title="Start Date is required! Format mm/dd/yyyy">
+          </div>
+          <div class="form-group">
+            <label for="edate">End Date</label>
+            <input type="edate" class="form-control" id="input-edate" aria-describedby="emailHelp"
+              placeholder="Enter End Date" name="'edate'" data-placement="right"
+              title="End Date is required! Format mm/dd/yyyy">
+          </div>
+          <div class="form-group">
+            <label for="edate">Category</label>
+
+            <select id="dropdown-category" name="category">
+              <option value="none">--None--</option>
+              <option value="Food">Food</option>
+              <option value="Clothing">Clothing</option>
+              <option value="School Supplies">School Supplies</option>
+              <option value="Household Items">Household Items</option>
+              <option value="Cleaning Supplies">Cleaning Supplies</option>
+              <option value="Miscellaneous">Misc</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="item">Item</label>
+            <input type="item" class="form-control" id="input-item" aria-describedby="emailHelp"
+              placeholder="Item you wish to Donate" name="item" data-placement="right" title="Item is required">
+          </div>
+          <label for="noOfItems">Number of Items</label>
+          <input type="noOfItems" class="form-control" id="input-noOfItems" aria-describedby="emailHelp"
+            placeholder="Enter number of items you wish to donate" name="noOfItems" data-placement="right"
+            title="#Items is required! Should be a number">
+          <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="input-location" aria-describedby="emailHelp"
+              placeholder="Your location" name="location" data-placement="right" title="Location is required">
+          </div>
+          <div class="form-group">
+            <label for="image">Image</label>
+            <input type="text" class="form-control" id="input-image" aria-describedby="emailHelp"
+              placeholder="Optional image of items you wish to donate" name="image">
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Request donation modal --}}
+
+<div class="modal" tabindex="-1" role="dialog" id="request-donation-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Request Donation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">How many items you need</label>
+            <input type="email" class="form-control" id="input-amount" aria-describedby="emailHelp">
+          </div>
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-primary" id="request-btn" data-id={{id}}>Request</button>
+
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+  </script>

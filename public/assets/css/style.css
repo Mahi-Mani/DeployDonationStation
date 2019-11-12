@@ -1,0 +1,54 @@
+
+body {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow: scroll;
+}
+
+textarea {
+    resize: none;
+}
+
+.priority {
+    background-color: #f8d7da;
+}
+
+.card-img-top {
+    height: 225px;
+    width: 300px;
+}
+
+h8 {
+    color: grey;
+    font-family: 'Gotham';
+    font-size: 12px;
+    margin-left: 115px;
+}
+
+@media screen and (max-width: 1024px){
+    img.bg {
+    left: 50%;
+    margin-left: -512px; }
+}
+
+.menu {
+    z-index: 1;
+}
+
+#bigdiv {
+    position: relative;   
+}
+
+#logo {
+    position: absolute;
+    left: 40px;
+    top: 20px;
+}
+
+#navbar {
+    height: 45px;
+}
+
+

@@ -1,0 +1,45 @@
+
+body {
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+textarea {
+    resize: none;
+}
+
+h8 {
+    color: grey;
+    font-family: 'Gotham';
+    font-size: 12px;
+    margin-left: 115px;
+}
+
+@media screen and (max-width: 1024px){
+    img.bg {
+    left: 50%;
+    margin-left: -512px; }
+}
+
+.menu {
+    z-index: 1;
+}
+
+#bigdiv {
+    position: relative;   
+}
+
+#logo {
+    position: absolute;
+    left: 40px;
+    top: 90px;
+}
+
+#navbar {
+    height: 45px;
+}
+
+

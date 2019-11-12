@@ -1,0 +1,92 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+<script src="../../assets/js/notify.js"></script>
+<script src="../assets/app2.js"></script>
+
+<ul class="nav shadow-lg p-3 mb-5 bg-dark rounded">
+    <li class="nav-item">
+        <button class="nav-link btn btn-info" id="homeButton">Home</button>
+    </li>
+    {{!-- <li class="nav-item">
+        <button class="nav-link btn btn-info" id="viewRequests">View Requests</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link btn btn-info" id="viewDonations">View Donations</button>
+    </li> --}}
+    <li class="nav-item">
+        <button class="nav-link btn btn-info" id="viewCards">Your Cards</button>
+    </li>
+    <li class="nav-item">
+        <a href="/"><button class="nav-link btn btn-info" id="logout">Logout</button></a>
+    </li>
+</ul>
+{{!-- Requestor Cards --}}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <a class="btn btn-primary btn-lg" data-toggle="collapse" href="#viewYourRequests" role="button"
+            aria-expanded="false" aria-controls="viewRequests">
+            Your Requests
+        </a>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {{#each requestorCards}}
+        <div class="d-inline-flex flex-row p-3">
+            <div class="card collapse" style="width: 18rem;" id="viewYourRequests">
+                <img class="card-img-top" src="{{image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{category}}</h5>
+                    <h5 class="card-title">{{item}} {{numberneeded}}</h5>
+                    <p class="card-text">Location: {{location}}</p>
+                    <button class="btn viewDonations" data-id="{{id}}">View Donations</button>
+                    <button class="btn btn-danger deleteRequestorCard" data-id="{{id}}">Delete</button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+<br><br>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <a class="btn btn-primary btn-lg" data-toggle="collapse" href="#viewYourDonations" role="button"
+            aria-expanded="false" aria-controls="viewRequests">
+            Your Donations
+        </a>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{{!-- Donator cards --}}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        {{#each result}}
+        <div class="d-inline-flex flex-row p-3">
+            <div class="card collapse" style="width: 18rem;" id="viewYourDonations">
+                <img class="card-img-top" src="{{image}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{category}}</h5>
+                    <h5 class="card-title">{{item}} {{itemnumber}}</h5>
+                    <p class="card-text">Location: {{location}}</p>
+                    <p class="card-text">Available Until: {{enddate}}</p>
+                    <button class="btn viewRequests" data-id="{{id}}">View Requests</button>
+                    <button class="btn btn-danger deleteDonatorCard" data-id={{id}}>Delete</button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="col-md-2"></div>
+</div>
